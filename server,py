@@ -9,7 +9,7 @@ def create_socket():
         global port
         global s
         host = ""
-        port = 9090
+        port = 9090 #alterar aqui
         s = socket.socket()
 
     except socket.error as msg:
